@@ -13,10 +13,8 @@ public record CreateFlightRequest(
         @NotBlank(message = "La aerolínea es obligatoria")
         String airline,
 
-        @NotBlank(message = "El origen es obligatorio")
         String origin,
 
-        @NotBlank(message = "El destino es obligatorio")
         String destination,
 
         @NotNull(message = "La hora de salida es obligatoria")
