@@ -26,10 +26,10 @@ public class Flight {
     @Column(nullable = false)
     private String airline;
 
-    @Column(nullable = false)
+    @Column
     private String origin;
 
-    @Column(nullable = false)
+    @Column
     private String destination;
 
     @Column(nullable = false)
