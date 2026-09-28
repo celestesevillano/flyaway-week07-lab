@@ -13,7 +13,6 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class EmailService {
 
-    // Carpeta donde se generan los "emails" simulados. Configurable si hiciera falta.
     private static final Path EMAILS_DIR = Path.of("emails");
 
     public void sendBookingConfirmation(Booking booking) {
@@ -29,7 +28,6 @@ public class EmailService {
                 writer.write(content);
             }
         } catch (IOException e) {
-            // No debe tumbar la reserva si falla la generación del "email".
             throw new RuntimeException("No se pudo generar el email de confirmación", e);
         }
     }
