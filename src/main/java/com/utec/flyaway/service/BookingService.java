@@ -32,17 +32,14 @@ public class BookingService {
 
         LocalDateTime now = LocalDateTime.now();
 
-        // No permitir reservar vuelos pasados o que ya estén en tránsito
         if (!flight.getDepartureTime().isAfter(now)) {
             throw new BadRequestException("No se puede reservar un vuelo que ya partió o está en tránsito");
         }
 
-        // No sobrevender vuelos
         if (flight.getAvailableSeats() <= 0) {
             throw new ConflictException("No hay asientos disponibles para este vuelo");
         }
 
-        // Evitar reservas con conflicto de horario (mismo usuario, vuelos que se superponen)
         List<Booking> existingBookings = bookingRepository.findByCustomerId(customer.getId());
         boolean hasConflict = existingBookings.stream().anyMatch(b -> overlaps(b.getFlight(), flight));
         if (hasConflict) {

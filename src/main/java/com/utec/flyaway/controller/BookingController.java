@@ -26,7 +26,6 @@ public class BookingController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    // Nota: el README lo escribe como "GET /flight/book/{id}" (singular) — se respeta tal cual.
     @GetMapping("/flight/book/{id}")
     public ResponseEntity<BookingResponse> getBooking(@PathVariable Long id) {
         return ResponseEntity.ok(bookingService.findById(id));
